@@ -1,6 +1,6 @@
 # Laravel Blog Setup and Documentation
 
-## Setup
+## Set up
 
 1. Unzip the file.
 2. Check the `composer.json` file for PHP and Laravel versions.

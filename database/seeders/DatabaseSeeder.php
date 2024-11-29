@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\{Category, User, Post};
+use App\Models\{Category, User};
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -24,13 +24,20 @@ class DatabaseSeeder extends Seeder
         ]);
         User::factory()->count(8)->create();
 
-        // insert default user 
+        // insert default users
         DB::table('users')->insert([
             [
-                'name' => 'samia',
-                'email' => 'mahisamia13@gmail.com',
+                'name' => 'Kays',
+                'email' => 'kays.zahidi@eemi.com',
                 'password' => Hash::make('12345678'),
-                'role' =>   'admin',
+                'role' => 'admin',
+                'valid' => 1
+            ],
+            [
+                'name' => 'Kamissoko',
+                'email' => 'silamakankamissoko@gmail.com',
+                'password' => Hash::make('12345678'),
+                'role' => 'admin',
                 'valid' => 1
             ]
         ]);
@@ -57,20 +64,12 @@ class DatabaseSeeder extends Seeder
             ]
         ]);
 
-        // seed some posts 
-        foreach (range(1, 8) as $i) {
-            $post = Post::factory()->create([
-                'user_id' => 14,
-                'image' => 'img0' . $i . '.jpg',
-                'featured' => $i<4 ? true : false ,
-            ]);
-            $category = Category::factory()->create();
-
-            DB::table('category_post')->insert([
-                'post_id' => $post->id,
-                'category_id' => $category->id
-            ]);
-        }
+        // insert categories
+        Category::create(['title' => 'Technology']);
+        Category::create(['title' => 'Health']);
+        Category::create(['title' => 'Travel']);
+        Category::create(['title' => 'Food']);
+        Category::create(['title' => 'Education']);
+        Category::create(['title' => 'Lifestyle']);
     }
-
 }

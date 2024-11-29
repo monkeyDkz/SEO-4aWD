@@ -71,12 +71,12 @@
                         </ul>
                     </li>
                     @guest
-                        <li>
+                        <!-- <li>
                             <a href="{{ route('login') }}" title="">Sign In</a>
-                        </li>
-                        <li>
+                        </li> -->
+                        <!-- <li>
                             <a href="{{ route('register') }}" title="">Sign Up</a>
-                        </li>
+                        </li> -->
                     @endguest
                     @auth
                         <li>

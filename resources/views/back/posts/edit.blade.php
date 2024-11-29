@@ -53,6 +53,10 @@
                                 <label for="image">New Image</label>
                                 <input type="file" name="image" class="form-control-file" id="image">
                             </div>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="featured" name="featured">
+                                <label class="form-check-label" for="featured">Featured Post</label>
+                            </div>
 
                         </div>
                         <!-- /.card-body -->

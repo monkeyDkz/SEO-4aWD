@@ -51,6 +51,7 @@ class PostController extends Controller
         }
         $request->user()->posts()->create($request->post());
 
+
         return redirect()->route('posts.index')->with('message', 'Post created successfully');
     }
 
@@ -98,6 +99,7 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->excerpt = $request->excerpt;
         $post->body = $request->body;
+        $post->featured = $request->has('featured');
         $post->save();
 
         return redirect()->route('posts.index')->with('message', 'Post updated successfully');

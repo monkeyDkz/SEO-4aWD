@@ -14,11 +14,11 @@ RUN apt-get update && apt-get install -y \
 # Installer Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Copier les fichiers de l'application dans le conteneur
-COPY . /var/www/html
-
 # Définir le répertoire de travail
 WORKDIR /var/www/html
+
+# Copier les fichiers de l'application dans le conteneur
+COPY . /var/www/html
 
 # Installer les dépendances Composer
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader || { cat /var/www/html/vendor/composer/installed.json; exit 1; }

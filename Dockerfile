@@ -2,7 +2,12 @@
 FROM php:8.0-apache
 
 # Installer les extensions PHP nécessaires
-RUN docker-php-ext-install pdo pdo_mysql
+RUN apt-get update && apt-get install -y \
+    libpng-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install gd pdo pdo_mysql
 
 # Installer Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -14,7 +19,7 @@ COPY . /var/www/html
 WORKDIR /var/www/html
 
 # Installer les dépendances Composer
-RUN composer install
+RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 
 # Donner les permissions nécessaires
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache

@@ -3,7 +3,10 @@
   "builds": [
     {
       "src": "api/index.php",
-      "use": "vercel-php@0.5.0"
+      "use": "vercel-php@0.5.0",
+      "config": {
+        "includeFiles": ["vendor/**", "bootstrap/**", "storage/**"]
+      }
     }
   ],
   "routes": [

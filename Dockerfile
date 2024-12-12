@@ -11,8 +11,17 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install gd pdo pdo_mysql
 
+# Installer AWS CLI
+RUN apt-get update && apt-get install -y \
+    awscli
+
 # Installer Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Définir les variables d'environnement pour AWS
+ENV AWS_ACCESS_KEY_ID=your_access_key_id
+ENV AWS_SECRET_ACCESS_KEY=your_secret_access_key
+ENV AWS_DEFAULT_REGION=your_default_region
 
 # Définir le répertoire de travail
 WORKDIR /var/www/html
